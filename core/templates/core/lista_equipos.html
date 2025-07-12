@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Equipos</title>
+</head>
+<body>
+    <h1>Equipos</h1>
+    <a href="{% url 'crear_equipo' %}">Crear Nuevo Equipo</a>
+    <p><a href="{% url 'lista_jugadores' %}">Ir a la lista de Jugadores</a></p>
+    <hr>
+    <ul>
+        {% for equipo in equipos %}
+            <li>
+                <strong>{{ equipo.nombre }}</strong> (Entrenador: {{ equipo.entrenador }}) - País: {{ equipo.pais.nombre|default:"N/A" }}
+                {% if equipo.escudo %}
+                    <br>Escudo: <img src="{{ equipo.escudo.url }}" alt="{{ equipo.nombre }} escudo" width="100">
+                {% endif %}
+                <p>
+                    <a href="{% url 'editar_equipo' equipo.pk %}">Editar</a> |
+                    <a href="{% url 'eliminar_equipo' equipo.pk %}">Eliminar</a>
+                </p>
+            </li>
+            <hr>
+        {% empty %}
+            <li>No hay equipos registrados.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

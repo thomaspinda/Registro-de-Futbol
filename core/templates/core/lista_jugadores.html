@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Jugadores</title>
+</head>
+<body>
+    <h1>Jugadores</h1>
+    <a href="{% url 'crear_jugador' %}">Crear Nuevo Jugador</a>
+    <p><a href="{% url 'lista_equipos' %}">Ir a la lista de Equipos</a></p>
+    <hr>
+    <ul>
+        {% for jugador in jugadores %}
+            <li>
+                <strong>{{ jugador.nombre }}</strong> ({{ jugador.edad }} años, Posición: {{ jugador.posicion }})
+                <br>País: {{ jugador.pais.nombre|default:"N/A" }} - Equipo: {{ jugador.equipo.nombre|default:"Sin Equipo" }}
+                {% if jugador.foto %}
+                    <br>Foto: <img src="{{ jugador.foto.url }}" alt="{{ jugador.nombre }} foto" width="80">
+                {% endif %}
+                <p>
+                    <a href="{% url 'editar_jugador' jugador.pk %}">Editar</a> |
+                    <a href="{% url 'eliminar_jugador' jugador.pk %}">Eliminar</a>
+                </p>
+            </li>
+            <hr>
+        {% empty %}
+            <li>No hay jugadores registrados.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
