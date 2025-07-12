@@ -75,6 +75,8 @@ def eliminar_jugador(request, pk):
         return redirect('lista_jugadores')
     return render(request, 'core/confirmar_eliminacion.html', {'objeto': jugador, 'tipo': 'jugador'})
 
+def home(request):
+    return render(request, 'core/home.html')
 
 class PaisViewSet(viewsets.ModelViewSet):
     queryset = Pais.objects.all()

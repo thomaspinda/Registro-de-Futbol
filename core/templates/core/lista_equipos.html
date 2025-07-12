@@ -9,6 +9,7 @@
     <h1>Equipos</h1>
     <a href="{% url 'crear_equipo' %}">Crear Nuevo Equipo</a>
     <p><a href="{% url 'lista_jugadores' %}">Ir a la lista de Jugadores</a></p>
+    <p><a href="{% url 'home' %}">Volver a home</a></p>
     <hr>
     <ul>
         {% for equipo in equipos %}

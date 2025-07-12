@@ -3,6 +3,7 @@ from . import views
 from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
+    path('', views.home, name='home'),
     # URLs para Equipos
     path('equipos/', views.lista_equipos, name='lista_equipos'),
     path('equipos/crear/', views.crear_equipo, name='crear_equipo'),
